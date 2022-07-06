@@ -4,6 +4,7 @@ import Movie from './Movie';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import videos from '../Request';
 
+
 const Row = ({ title, fetchURL, rowID}) => {
   const [movies, setMovies] = useState([])
   const [like, setLike] = useState([false])
@@ -16,14 +17,15 @@ const Row = ({ title, fetchURL, rowID}) => {
   }, [fetchURL])
 
   console.log(fetchURL)
-    
- // useEffect(()=>{
-          //axios.get(videos).then((response)=>{
-       //       setVideo(response.data.results)
-    //      })
-      //    }, [])
 
-      //    console.log(video)
+    
+ useEffect(()=>{
+        axios.get(videos).then((response)=>{
+              setVideo(response.data.results)
+         })
+          }, [])
+
+          console.log(video)
 
 const slideLeft = () => {
   var slider = document.getElementById('slider' + rowID);
