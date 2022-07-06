@@ -16,7 +16,7 @@ const Row = ({ title, fetchURL}) => {
       <div id={'slider'}>
       {movies.map((item, id) => (
             <div>
-              <img src ={`https://image.tmdb.org/t/p/w500/$item?.backdrop_path}`} alt={item?.title} />
+              <img src ={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`} alt={item?.title} />
             </div>
       ))}
       </div>
