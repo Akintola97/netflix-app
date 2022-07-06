@@ -2,13 +2,12 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Movie from './Movie';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
-import requests from '../Request';
-import videos from '../Request'
+import videos from '../Request';
 
 const Row = ({ title, fetchURL, rowID}) => {
   const [movies, setMovies] = useState([])
   const [like, setLike] = useState([false])
-  const [video, setVideo] = useState();
+  const [video, setVideo] = useState([]);
 
   useEffect(()=>{
     axios.get(fetchURL).then((response) =>{
@@ -24,7 +23,7 @@ const Row = ({ title, fetchURL, rowID}) => {
           })
           }, [])
 
-          console.log(videos)
+          console.log(video)
 
 const slideLeft = () => {
   var slider = document.getElementById('slider' + rowID);
@@ -43,7 +42,7 @@ const slideRight = () => {
   className='bg-white left-0 rounded-full absolute opacity-50 hover:opacity:100 cursor-pointer z-10 hidden group-hover:block'/>
       <div id={'slider' + rowID} className='w-ful h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
       <button target='_blank'
-   href={`https://www.youtube.com/watch?v=${video}`}>
+   href={`https://www.youtube.com/watch?v=${videos}`}>
       {movies.map((item, id) => (
           <Movie key={id} item={item} />
       ))}
