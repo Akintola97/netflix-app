@@ -5,8 +5,6 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 const Movie = ({item}) => {
     const [like, setLike] = useState([false]);
     
-
-
  return (
     <div className='w-[43vmin] inline-block cursor-pointer relative p-2'>
 
