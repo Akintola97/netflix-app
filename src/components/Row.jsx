@@ -5,10 +5,11 @@ import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import videos from '../Request';
 
 
-const Row = ({ title, fetchURL, rowID}) => {
+const Row = ({ title, fetchURL, fetchMovieVideo, fetchTvVideo, rowID}) => {
   const [movies, setMovies] = useState([])
   const [like, setLike] = useState([false])
-  const [video, setVideo] = useState([]);
+  const [tvVideo, setVideo] = useState();
+  const [movieVideo, setMovieVideo] = useState();
 
   useEffect(()=>{
     axios.get(fetchURL).then((response) =>{
@@ -19,13 +20,20 @@ const Row = ({ title, fetchURL, rowID}) => {
   console.log(fetchURL)
 
     
- useEffect(()=>{
-        axios.get(videos).then((response)=>{
+  useEffect(()=>{
+        axios.get(fetchTvVideo).then((response)=>{
               setVideo(response.data.results)
          })
           }, [])
 
-          console.log(video)
+          console.log(tvVideo)
+  useEffect(()=>{
+        axios.get(fetchMovieVideo).then((response)=>{
+              setMovieVideo(response.data.results)
+         })
+          }, [])
+
+          console.log(movieVideo)
 
 const slideLeft = () => {
   var slider = document.getElementById('slider' + rowID);
@@ -43,12 +51,14 @@ const slideRight = () => {
   <MdChevronLeft onClick={slideLeft}
   className='bg-white left-0 rounded-full absolute opacity-50 hover:opacity:100 cursor-pointer z-10 hidden group-hover:block'/>
       <div id={'slider' + rowID} className='w-ful h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
-      <button target='_blank'
-   href={`https://www.youtube.com/watch?v=${videos}`}>
+   <button 
+   href={`https://www.youtube.com/watch?v=${tvVideo}${movieVideo}`}
+   target='_blank'
+   >
       {movies.map((item, id) => (
           <Movie key={id} item={item} />
       ))}
-        </button>
+</button>
       </div>
 <MdChevronRight onClick={slideRight} className='bg-white right-0 rounded-full absolute opacity-50 hover:opacity:100 cursor-pointer z-10 hidden group-hover:block' />
     </div>
